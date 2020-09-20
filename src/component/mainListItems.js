@@ -11,6 +11,7 @@ import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { Link } from 'react-router-dom';
 
+//라우팅 조건부 랜더링 하기위해 선언
 const name="member";
 const name1="classlist";
 export const mainListItems = (

@@ -12,6 +12,7 @@ const invertDirection = {
 
 class GridList extends Component {
   state = {
+    display:false,
     data: [
       {
         firstName: "Tann",
@@ -89,6 +90,13 @@ class GridList extends Component {
     sortDirection: "desc"
   };
 
+  toggleHandler=()=>{
+    const currentStatus=this.state.display;
+    this.setState({
+      display:!currentStatus
+    })
+  }
+
   handleRemove = i => {
     this.setState(state => ({
       data: state.data.filter((row, j) => j !== i)
@@ -121,16 +129,22 @@ class GridList extends Component {
   };
 
   render() {
+    let content=null;
+    if(this.state.display){
+      content=<Form
+                onSubmit={submission =>
+                  this.setState({
+                    data: [...this.state.data, submission]
+                  })
+                }
+              />
+    }
     return (
       <MuiThemeProvider>
         <div className="App">
-          <Form
-            onSubmit={submission =>
-              this.setState({
-                data: [...this.state.data, submission]
-              })
-            }
-          />
+          <button onClick={this.toggleHandler}>회원등록하기</button>
+            {content}
+          
           <Table
             handleSort={this.handleSort}
             handleRemove={this.handleRemove}

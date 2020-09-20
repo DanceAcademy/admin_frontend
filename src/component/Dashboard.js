@@ -20,7 +20,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems } from './mainListItems';
 import GridList from './Grid/GridList';
-import ClassList from '../pages/classList/ClassList';
+import ClassList from '../pages/ClassList/ClassList';
+import Main from '../pages/Main/Main';
 
 function Copyright() {
   return (
@@ -130,26 +131,18 @@ function Dashboard({ name }) {
     
   }, [])
   let render;
-  if(name==="member"){
-    console.log("member")
+  if(name==="main"){
+    render = <Main />
+  }else if (name==="member"){
     render = <GridList />
-  }else{
-    console.log("class")
+  }else if(name==="classlist"){
     render  = <ClassList />
   }
-  // if(match.parms.name==="member"){
-  //   console.log('fdfdff')
-  // }
-  // if (isLoggedIn) {
-  //   button = <LogoutButton onClick={this.handleLogoutClick} />;
-  // } else {
-  //   button = <LoginButton onClick={this.handleLoginClick} />;
-  // }
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -162,13 +155,14 @@ function Dashboard({ name }) {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-          회원보기
+          {name}
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
+          <a href="/">로그아웃</a>
         </Toolbar>
       </AppBar>
       <Drawer
