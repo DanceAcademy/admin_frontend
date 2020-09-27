@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -20,7 +20,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems } from './mainListItems';
 import GridList from './Grid/GridList';
-import ClassList from '../pages/ClassList/ClassList';
+import ClassList from '../pages/classList/ClassList';
 import Main from '../pages/Main/Main';
 
 function Copyright() {
@@ -127,16 +127,15 @@ function Dashboard({ name }) {
     setOpen(false);
   };
   useEffect(() => {
-    console.log( name )
-    
-  }, [])
+    console.log(name);
+  }, [name]);
   let render;
-  if(name==="main"){
-    render = <Main />
-  }else if (name==="member"){
-    render = <GridList />
-  }else if(name==="classlist"){
-    render  = <ClassList />
+  if (name === 'main') {
+    render = <Main />;
+  } else if (name === 'member') {
+    render = <GridList />;
+  } else if (name === 'classlist') {
+    render = <ClassList />;
   }
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -155,7 +154,7 @@ function Dashboard({ name }) {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-          {name}
+            {name}
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -178,7 +177,7 @@ function Dashboard({ name }) {
           </IconButton>
         </div>
         <Divider />
-         <List>{mainListItems}</List>
+        <List>{mainListItems}</List>
         <Divider />
         {/* <List>{secondaryListItems}</List>  */}
       </Drawer>
